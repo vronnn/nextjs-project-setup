@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa';
 
 import BaseLink from '@/components/links/BaseLink';
@@ -14,6 +15,7 @@ export type NavProp = {
 };
 
 export default function DesktopNav({ links, className }: NavProp) {
+  const router = useRouter();
   return (
     <ul className={clsxm('hidden items-center gap-x-6 md:flex', className)}>
       {links.map((link) => (
@@ -22,7 +24,8 @@ export default function DesktopNav({ links, className }: NavProp) {
             href={link.href}
             className={clsxm(
               'text-sm text-theme-nav md:text-[15px]',
-              'hover:text-theme-navhover'
+              'hover:text-theme-navhover',
+              router.asPath === link.href && 'text-theme-navhover'
             )}
           >
             {link.label}

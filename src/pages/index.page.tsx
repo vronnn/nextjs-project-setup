@@ -4,6 +4,7 @@ import * as React from 'react';
 import { TbArrowUpRight } from 'react-icons/tb';
 
 import Layout from '@/components/layout/Layout';
+import BaseLink from '@/components/links/BaseLink';
 import ButtonLink from '@/components/links/ButtonLink';
 
 export default function Home() {
@@ -110,12 +111,13 @@ export default function Home() {
                 data-aos-duration='1000'
               >
                 Initiate your NextJs project with the setups!{' '}
-                <a
+                <BaseLink
                   href='https://yarnpkg.com/'
+                  openNewTab
                   className='font-mono tracking-tight text-theme-saxe'
                 >
                   &#40;using yarn&#41;
-                </a>
+                </BaseLink>
               </p>
               <div className='flex items-center justify-center'>
                 <ButtonLink
