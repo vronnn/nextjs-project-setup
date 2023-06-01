@@ -24,6 +24,8 @@ module.exports = {
         base: {
           subtle: '#27272a',
           stealth: '#4c4c55',
+          navbar: '#1d1e20',
+          navbarhover: '#282829',
         },
       },
     },

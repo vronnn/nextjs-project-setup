@@ -12,14 +12,14 @@ export default function Home() {
   }, []);
   return (
     <Layout>
-      <main className='bg-theme-dark text-white'>
+      <main className='overflow-hidden bg-theme-dark text-white'>
         <section className='relative grid min-h-[calc(100vh-4rem)] -translate-y-10 place-items-center'>
           <Image
             src='/images/tailwindcss-logotype-white.svg'
             alt='tailwind'
             width={250}
             height={250}
-            className='absolute left-[20%] top-[30%] w-[15%] min-w-[8rem] opacity-80 drop-shadow'
+            className='absolute left-[18%] top-[28%] w-[15%] min-w-[8rem] opacity-80 drop-shadow'
             data-aos='fade-right'
             data-aos-duration='500'
             data-aos-delay='900'
@@ -29,14 +29,14 @@ export default function Home() {
             alt='prettier'
             width={200}
             height={200}
-            className='absolute right-[43%] top-[22%] w-[14%] min-w-[8rem] opacity-80 drop-shadow'
+            className='absolute right-[38%] top-[20%] w-[14%] min-w-[7rem] opacity-80 drop-shadow md:right-[43%]'
             data-aos='fade-down'
             data-aos-duration='500'
             data-aos-delay='1100'
             data-aos-easing='ease-out-sine'
           />
           <div
-            className='absolute right-[20%] top-[30%] w-[15%] min-w-[8rem] max-w-[11rem] opacity-80 drop-shadow'
+            className='absolute right-[18%] top-[27.5%] w-[15%] min-w-[6rem] max-w-[11rem] opacity-80 drop-shadow md:top-[28%]'
             data-aos='fade-left'
             data-aos-duration='500'
             data-aos-delay='1300'
@@ -48,7 +48,7 @@ export default function Home() {
                 width={200}
                 height={200}
               />
-              <span className='absolute left-[40%] top-1/2 -translate-y-1/2 text-2xl font-semibold'>
+              <span className='absolute left-[40%] top-1/2 -translate-y-1/2 text-base font-semibold md:text-2xl'>
                 ESLint
               </span>
             </div>
@@ -58,7 +58,7 @@ export default function Home() {
             alt='typescript'
             width={60}
             height={60}
-            className='absolute bottom-[30%] left-[25%] w-[4%] min-w-[2.5rem] opacity-80 drop-shadow'
+            className='absolute bottom-[25%] left-[25%] w-[4%] min-w-[2rem] opacity-80 drop-shadow md:bottom-[30%]'
             data-aos='fade-right'
             data-aos-duration='500'
             data-aos-delay='1900'
@@ -68,7 +68,7 @@ export default function Home() {
             alt='tailwind'
             width={60}
             height={60}
-            className='absolute bottom-[22%] right-1/2 w-[4%] min-w-[2.5rem] translate-x-1/2 opacity-80 drop-shadow'
+            className='absolute bottom-[22%] right-[45%] w-[4%] min-w-[2rem] translate-x-1/2 opacity-80 drop-shadow md:bottom-[20%] md:right-[48%]'
             data-aos='fade-up'
             data-aos-duration='500'
             data-aos-delay='1700'
@@ -78,7 +78,7 @@ export default function Home() {
             alt='tailwind'
             width={60}
             height={60}
-            className='absolute bottom-[32%] right-[25%] w-[4%] min-w-[2.5rem] opacity-80 drop-shadow'
+            className='absolute bottom-[25%] right-[25%] w-[4%] min-w-[2rem] opacity-80 drop-shadow md:bottom-[32%]'
             data-aos='fade-left'
             data-aos-duration='500'
             data-aos-delay='1500'
