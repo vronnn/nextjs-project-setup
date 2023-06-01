@@ -3,8 +3,8 @@ import { MdWbTwilight } from 'react-icons/md';
 export default function NotFoundPage() {
   return (
     <main>
-      <section className='bg-white'>
-        <div className='flex min-h-screen w-full flex-col items-center justify-center gap-y-2 text-black'>
+      <section className='bg-theme-dark'>
+        <div className='flex min-h-screen w-full flex-col items-center justify-center gap-y-2 text-theme-navhover'>
           <MdWbTwilight
             size={70}
             className='drop-shadow-glow animate-pulse text-red-500'

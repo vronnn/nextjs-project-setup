@@ -17,7 +17,13 @@ module.exports = {
       colors: {
         theme: {
           dark: '#18181b',
-          blue: '#6882c9',
+          saxe: '#5772b9',
+          nav: '#9aa2ae',
+          navhover: '#f3f4f6',
+        },
+        base: {
+          subtle: '#27272a',
+          stealth: '#4c4c55',
         },
       },
     },

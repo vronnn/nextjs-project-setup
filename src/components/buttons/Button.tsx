@@ -109,9 +109,23 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           </div>
         )}
 
-        {LeftIcon && <LeftIcon className={leftIconClassName} />}
+        {LeftIcon && (
+          <LeftIcon
+            className={clsxm(
+              [size === 'base' && 'text-lg md:text-xl'],
+              leftIconClassName
+            )}
+          />
+        )}
         <p className={textClassName}>{children}</p>
-        {RightIcon && <RightIcon className={rightIconClassName} />}
+        {RightIcon && (
+          <RightIcon
+            className={clsxm(
+              [size === 'base' && 'text-lg md:text-xl'],
+              rightIconClassName
+            )}
+          />
+        )}
       </button>
     );
   }
