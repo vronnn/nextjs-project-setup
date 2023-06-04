@@ -174,7 +174,7 @@ export default function CreateAppPage() {
           ) : (
             <BaseLink
               href='/docs/prettier'
-              className='flex items-center gap-x-2 px-6 py-3 text-lg'
+              className='flex items-center gap-x-2 py-3 pl-6 text-lg'
             >
               Prettier
               <FiChevronRight size={25} />

@@ -28,7 +28,7 @@ export default function Sidebar() {
               className={clsxm(
                 'rounded px-3 py-1.5 text-[.9rem] leading-[1.35rem] text-theme-nav',
                 'hover:bg-base-navbarhover hover:text-theme-navhover',
-                router.asPath === nav.href && [
+                router.asPath.split('#')[0] === nav.href && [
                   'bg-theme-saxe bg-opacity-20 text-theme-lightsaxe',
                   'hover:bg-theme-saxe hover:bg-opacity-20 hover:text-theme-lightsaxe',
                 ]

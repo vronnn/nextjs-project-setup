@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FiArrowRight, FiChevronRight } from 'react-icons/fi';
+import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
 
 import DashboardLayout from '@/components/layout/DashboarLayout';
 import BaseLink from '@/components/links/BaseLink';
@@ -168,15 +168,25 @@ export default function PrettierPage() {
         </div>
         <div className='h-[.8px] w-full bg-base-navbarhover'></div>
         <div className='flex justify-between py-6 text-theme-navhover'>
-          <div></div>
           {isLoading ? (
             <Skeleton className='h-8 w-32' />
           ) : (
             <BaseLink
-              href='/docs/prettier'
-              className='flex items-center gap-x-2 px-6 py-3 text-lg'
+              href='/docs'
+              className='flex items-center gap-x-2 py-3 pr-6 text-lg'
             >
-              Prettier
+              <FiChevronLeft size={25} />
+              Create Next App
+            </BaseLink>
+          )}
+          {isLoading ? (
+            <Skeleton className='h-8 w-32' />
+          ) : (
+            <BaseLink
+              href='/docs/eslint'
+              className='flex items-center gap-x-2 py-3 pl-6 text-lg'
+            >
+              ESLint
               <FiChevronRight size={25} />
             </BaseLink>
           )}
