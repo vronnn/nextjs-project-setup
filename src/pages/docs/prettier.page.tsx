@@ -1,6 +1,9 @@
 import * as React from 'react';
+import { BsCheckLg } from 'react-icons/bs';
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
+import { RxCopy } from 'react-icons/rx';
 
+import Button from '@/components/buttons/Button';
 import DashboardLayout from '@/components/layout/DashboarLayout';
 import BaseLink from '@/components/links/BaseLink';
 import Skeleton from '@/components/Skeleton';
@@ -12,9 +15,38 @@ export default function PrettierPage() {
       setIsLoading(false);
     }, 1500);
   }, []);
+
+  const [isCopying, setIsCopying] = React.useState(false);
+  const [isCopying1, setIsCopying1] = React.useState(false);
+
+  const ref1 = React.useRef<HTMLDivElement>(null);
+  const ref2 = React.useRef<HTMLDivElement>(null);
+  const handleCopy = async (text: string) => {
+    try {
+      if (text === ref2.current?.innerText) {
+        setIsCopying1(true);
+      } else {
+        setIsCopying(true);
+      }
+      await navigator.clipboard.writeText(text);
+      setTimeout(() => {
+        if (text === ref2.current?.innerText) {
+          setIsCopying1(false);
+        } else {
+          setIsCopying(false);
+        }
+      }, 3000);
+    } catch (error) {
+      if (text === ref2.current?.innerText) {
+        setIsCopying1(false);
+      } else {
+        setIsCopying(false);
+      }
+    }
+  };
   return (
     <DashboardLayout>
-      <div className='box-border w-full overflow-y-auto py-6 pl-16 pr-10'>
+      <div className='box-border w-full overflow-y-auto px-7 py-7 md:px-12 xl:pl-16 xl:pr-10'>
         <div className='space-y-4'>
           {isLoading ? (
             <Skeleton className='h-4 w-52' />
@@ -74,7 +106,16 @@ export default function PrettierPage() {
                 {isLoading ? (
                   <Skeleton className='h-12 w-full' />
                 ) : (
-                  <div className='code'>yarn create next-app@latest</div>
+                  <div className='code relative'>
+                    <Button
+                      variant='outline'
+                      size='small'
+                      onClick={() => handleCopy(ref1.current?.innerText || '')}
+                      icon={isCopying ? BsCheckLg : RxCopy}
+                      className='absolute right-[.6rem] top-[.6rem] px-3 py-1'
+                    />
+                    <div ref={ref1}>yarn create next-app@latest</div>
+                  </div>
                 )}
                 {isLoading ? (
                   <Skeleton className=' h-56 w-full' />
@@ -85,75 +126,86 @@ export default function PrettierPage() {
                       regarding your app&rsquo;s basic setup. All you have to do
                       is just follow this answer for our objectives earlier,
                     </p>
-                    <div className='code space-y-1'>
-                      <div className='flex items-center gap-x-2'>
-                        <span className='text-cyan-600'>?</span>
-                        <span>What is your project named?</span>
-                        <FiChevronRight />
-                        <span>.</span>
-                      </div>
-                      <div className='flex items-center gap-x-2'>
-                        <span className='text-cyan-600'>?</span>
-                        <span>
-                          Would you like to use{' '}
-                          <span className='font-semibold text-sky-600'>
-                            Typescript
-                          </span>{' '}
-                          with this project?
-                        </span>
-                        <FiChevronRight />
-                        <span className='text-cyan-600 underline'>Yes</span>
-                      </div>
-                      <div className='flex items-center gap-x-2'>
-                        <span className='text-cyan-600'>?</span>
-                        <span>
-                          Would you like to use{' '}
-                          <span className='font-semibold text-sky-600'>
-                            ESLint
-                          </span>{' '}
-                          with this project?
-                        </span>
-                        <FiChevronRight />
-                        <span className='text-cyan-600 underline'>Yes</span>
-                      </div>
-                      <div className='flex items-center gap-x-2'>
-                        <span className='text-cyan-600'>?</span>
-                        <span>
-                          Would you like to use{' '}
-                          <span className='font-semibold text-sky-600'>
-                            `src/` directory
-                          </span>{' '}
-                          with this project?
-                        </span>
-                        <FiChevronRight />
-                        <span className='text-cyan-600 underline'>Yes</span>
-                      </div>
-                      <div className='flex items-center gap-x-2'>
-                        <span className='text-cyan-600'>?</span>
-                        <span>
-                          Use{' '}
-                          <span className='font-semibold text-sky-600'>
-                            App Router
-                          </span>{' '}
-                          <span className='font-medium'>
-                            &#40;recommended&#41;
+                    <div className='code relative' ref={ref2}>
+                      <Button
+                        variant='outline'
+                        size='small'
+                        onClick={() =>
+                          handleCopy(ref2.current?.innerText || '')
+                        }
+                        icon={isCopying1 ? BsCheckLg : RxCopy}
+                        className='absolute right-[.6rem] top-2 px-3 py-1'
+                      />
+                      <div className='inline-block space-y-1 whitespace-nowrap'>
+                        <div className='flex items-center gap-x-2'>
+                          <span className='text-cyan-600'>?</span>
+                          <span>What is your project named?</span>
+                          <FiChevronRight />
+                          <span>.</span>
+                        </div>
+                        <div className='flex items-center gap-x-2'>
+                          <span className='text-cyan-600'>?</span>
+                          <span>
+                            Would you like to use{' '}
+                            <span className='font-semibold text-sky-600'>
+                              Typescript
+                            </span>{' '}
+                            with this project?
                           </span>
-                          ?
-                        </span>
-                        <FiChevronRight />
-                        <span className='text-cyan-600 underline'>No</span>
-                      </div>
-                      <div className='flex items-center gap-x-2'>
-                        <span className='text-cyan-600'>?</span>
-                        <span>
-                          Would you like to customize the default{' '}
-                          <span className='font-semibold text-sky-600'>
-                            import alias
+                          <FiChevronRight />
+                          <span className='text-cyan-600 underline'>Yes</span>
+                        </div>
+                        <div className='flex items-center gap-x-2'>
+                          <span className='text-cyan-600'>?</span>
+                          <span>
+                            Would you like to use{' '}
+                            <span className='font-semibold text-sky-600'>
+                              ESLint
+                            </span>{' '}
+                            with this project?
                           </span>
-                          ?
-                        </span>
-                        <FiChevronRight />
-                        <span className='text-cyan-600 underline'>No</span>
+                          <FiChevronRight />
+                          <span className='text-cyan-600 underline'>Yes</span>
+                        </div>
+                        <div className='flex items-center gap-x-2'>
+                          <span className='text-cyan-600'>?</span>
+                          <span>
+                            Would you like to use{' '}
+                            <span className='font-semibold text-sky-600'>
+                              `src/` directory
+                            </span>{' '}
+                            with this project?
+                          </span>
+                          <FiChevronRight />
+                          <span className='text-cyan-600 underline'>Yes</span>
+                        </div>
+                        <div className='flex items-center gap-x-2'>
+                          <span className='text-cyan-600'>?</span>
+                          <span>
+                            Use{' '}
+                            <span className='font-semibold text-sky-600'>
+                              App Router
+                            </span>{' '}
+                            <span className='font-medium'>
+                              &#40;recommended&#41;
+                            </span>
+                            ?
+                          </span>
+                          <FiChevronRight />
+                          <span className='text-cyan-600 underline'>No</span>
+                        </div>
+                        <div className='flex items-center gap-x-2'>
+                          <span className='text-cyan-600'>?</span>
+                          <span>
+                            Would you like to customize the default{' '}
+                            <span className='font-semibold text-sky-600'>
+                              import alias
+                            </span>
+                            ?
+                          </span>
+                          <FiChevronRight />
+                          <span className='text-cyan-600 underline'>No</span>
+                        </div>
                       </div>
                     </div>
                     <p className='leading-relaxed text-gray-300'>

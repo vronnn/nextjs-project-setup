@@ -122,7 +122,7 @@ export default function Home() {
               <div className='flex items-center justify-center'>
                 <ButtonLink
                   href='/docs'
-                  variant='outline'
+                  variant='light'
                   rightIcon={HiOutlineArrowSmRight}
                   data-aos='fade-in'
                   data-aos-delay='800'

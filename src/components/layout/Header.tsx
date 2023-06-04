@@ -69,7 +69,7 @@ export default function Header() {
       </header>
       <div
         className={clsxm(
-          'fixed top-[4rem] z-10 w-full bg-base-navbar transition-transform duration-300 md:hidden',
+          'fixed top-0 z-10 w-full bg-base-navbar pt-16 transition-transform duration-300 md:hidden',
           !showNav && '-translate-y-[calc(100%+4rem)]'
         )}
       >

@@ -9,10 +9,12 @@ import clsxm from '@/lib/clsxm';
 enum ButtonVariant {
   'primary',
   'secondary',
+  'light',
   'outline',
 }
 
 enum ButtonSize {
+  'small',
   'base',
 }
 
@@ -20,6 +22,7 @@ export type ButtonProps = {
   variant?: keyof typeof ButtonVariant;
   size?: keyof typeof ButtonSize;
   isLoading?: boolean;
+  icon?: IconType;
   iconClassName?: string;
   leftIcon?: IconType;
   rightIcon?: IconType;
@@ -37,8 +40,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       isLoading,
       variant = 'primary',
       size = 'base',
+      icon: Icon,
       leftIcon: LeftIcon,
       rightIcon: RightIcon,
+      iconClassName,
       leftIconClassName,
       rightIconClassName,
       textClassName,
@@ -58,6 +63,13 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           'rounded-md font-medium',
 
           [
+            size === 'small' && [
+              'min-h-[1.75rem] px-2.5 md:min-h-[2rem]',
+              'text-sm md:text-base',
+              RightIcon && 'pr-2',
+              LeftIcon && 'pl-2',
+              Icon && '!p-2',
+            ],
             size === 'base' && [
               'min-h-[2.25rem] px-4 md:min-h-[2.5rem]',
               'text-sm md:text-base',
@@ -82,11 +94,16 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'disabled:bg-[#a03535]',
               'focus-visible:ring-[#f6d2d2]',
             ],
-            variant === 'outline' && [
+            variant === 'light' && [
               'bg-white text-[#1F1F1F]',
               'border border-gray-300',
               'hover:bg-[#d5d5d5]',
               'disabled:bg-[#F5F5F5]',
+            ],
+            variant === 'outline' && [
+              'text-theme-nav hover:text-theme-navhover',
+              'bg-theme-saxe bg-opacity-20',
+              'border border-base-stealth',
             ],
           ],
           'disabled:cursor-not-allowed',
@@ -102,11 +119,20 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
           <div
             className={clsxm(
               'absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-white',
-              [variant === 'outline' && '!text-black']
+              [variant === 'light' && '!text-black']
             )}
           >
             <ImSpinner2 className='animate-spin' />
           </div>
+        )}
+
+        {Icon && (
+          <Icon
+            className={clsxm(
+              [size === 'base' && 'text-lg md:text-xl'],
+              iconClassName
+            )}
+          />
         )}
 
         {LeftIcon && (
@@ -117,7 +143,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             )}
           />
         )}
-        <p className={textClassName}>{children}</p>
+        {!Icon && <p className={textClassName}>{children}</p>}
         {RightIcon && (
           <RightIcon
             className={clsxm(
