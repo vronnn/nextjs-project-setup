@@ -3,6 +3,7 @@ import * as React from 'react';
 import { HiLightningBolt, HiOutlineMenu } from 'react-icons/hi';
 
 import DesktopNav from '@/components/layout/DesktopNav';
+import { sideBarItems } from '@/components/layout/Sidebar';
 import clsxm from '@/lib/clsxm';
 
 import BaseLink from '../links/BaseLink';
@@ -26,7 +27,7 @@ export default function Header() {
   const router = useRouter();
 
   const links = [
-    { label: 'Docs', href: '/get-started' },
+    { label: 'Docs', href: '/docs' },
     { label: 'Blog', href: '/blog' },
     { label: 'Home', href: '/' },
     { label: 'About', href: '/about' },
@@ -68,24 +69,57 @@ export default function Header() {
       </header>
       <div
         className={clsxm(
-          'absolute top-[4rem] z-10 w-full bg-base-navbar transition-transform duration-300 md:hidden',
+          'fixed top-[4rem] z-10 w-full bg-base-navbar transition-transform duration-300 md:hidden',
           !showNav && '-translate-y-[calc(100%+4rem)]'
         )}
       >
         <ul className={clsxm('w-full space-y-1 px-6 py-4')}>
-          {links.map((link) => (
+          {links.slice(1).map((link) => (
             <li key={link.label}>
               <BaseLink
                 href={link.href}
                 onClick={handleNavbar}
                 className={clsxm(
-                  'text-sm text-theme-nav md:text-[15px]',
+                  'text-theme-nav md:text-[15px]',
                   'group hover:text-theme-navhover',
                   router.asPath === link.href && 'text-theme-saxe'
                 )}
               >
-                <div className='rounded px-3 py-1.5 group-hover:bg-base-navbarhover'>
+                <div
+                  className={clsxm(
+                    'rounded px-3 py-1.5 group-hover:bg-base-navbarhover',
+                    router.asPath === link.href && [
+                      'group-hover:text-theme-saxe',
+                    ]
+                  )}
+                >
                   {link.label}
+                </div>
+              </BaseLink>
+            </li>
+          ))}
+        </ul>
+        <div className='h-[.8px] w-full bg-base-subtle'></div>
+        <ul className='w-full space-y-1 px-6 py-4'>
+          {sideBarItems.map((nav, index) => (
+            <li key={index}>
+              <BaseLink
+                href={nav.href}
+                className={clsxm(
+                  'text-theme-nav md:text-[15px]',
+                  'group hover:text-theme-navhover',
+                  router.asPath === nav.href && 'text-theme-saxe'
+                )}
+              >
+                <div
+                  className={clsxm(
+                    'rounded px-3 py-1.5 group-hover:bg-base-navbarhover',
+                    router.asPath === nav.href && [
+                      'group-hover:text-theme-saxe',
+                    ]
+                  )}
+                >
+                  {nav.label}
                 </div>
               </BaseLink>
             </li>

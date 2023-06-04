@@ -30,6 +30,19 @@ module.exports = {
           tag: '#343941',
         },
       },
+      keyframes: {
+        shimmer: {
+          '0%': {
+            backgroundPosition: '-700px 0',
+          },
+          '100%': {
+            backgroundPosition: '700px 0',
+          },
+        },
+      },
+      animation: {
+        shimmer: 'shimmer 1.3s linear infinite',
+      },
     },
   },
   plugins: [],

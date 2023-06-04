@@ -1,7 +1,7 @@
 import AOS from 'aos';
 import Image from 'next/image';
 import * as React from 'react';
-import { TbArrowUpRight } from 'react-icons/tb';
+import { HiOutlineArrowSmRight } from 'react-icons/hi';
 
 import Layout from '@/components/layout/Layout';
 import BaseLink from '@/components/links/BaseLink';
@@ -121,9 +121,9 @@ export default function Home() {
               </p>
               <div className='flex items-center justify-center'>
                 <ButtonLink
-                  href='/get-started'
+                  href='/docs'
                   variant='outline'
-                  rightIcon={TbArrowUpRight}
+                  rightIcon={HiOutlineArrowSmRight}
                   data-aos='fade-in'
                   data-aos-delay='800'
                   data-aos-duration='1500'
