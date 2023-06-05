@@ -12,7 +12,7 @@ export default function DashboardLayout({
     <Layout>
       <main className='bg-theme-dark text-white'>
         <section className='dashboard-layout'>
-          <div className='dashboard-shadow flex w-full overflow-y-clip'>
+          <div className='flex w-full overflow-y-clip'>
             <Sidebar />
             {children}
           </div>

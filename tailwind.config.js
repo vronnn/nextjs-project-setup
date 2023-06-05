@@ -29,6 +29,10 @@ module.exports = {
           navbarhover: '#282829',
           tag: '#343941',
         },
+        code: {
+          bool: '#d19a66',
+          state: '#e5c07b',
+        },
       },
       keyframes: {
         shimmer: {

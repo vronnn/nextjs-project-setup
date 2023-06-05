@@ -10,7 +10,7 @@ enum ButtonVariant {
   'primary',
   'secondary',
   'light',
-  'outline',
+  'transdark',
 }
 
 enum ButtonSize {
@@ -100,9 +100,9 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
               'hover:bg-[#d5d5d5]',
               'disabled:bg-[#F5F5F5]',
             ],
-            variant === 'outline' && [
+            variant === 'transdark' && [
               'text-theme-nav hover:text-theme-navhover',
-              'bg-theme-saxe bg-opacity-20',
+              'bg-[#323746]',
               'border border-base-stealth',
             ],
           ],

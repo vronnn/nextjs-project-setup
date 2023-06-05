@@ -1,9 +1,8 @@
 import * as React from 'react';
-import { BsCheckLg } from 'react-icons/bs';
 import { FiArrowRight, FiChevronLeft, FiChevronRight } from 'react-icons/fi';
-import { RxCopy } from 'react-icons/rx';
+import { TbPoint } from 'react-icons/tb';
 
-import Button from '@/components/buttons/Button';
+import CodeBlock from '@/components/Codeblock';
 import DashboardLayout from '@/components/layout/DashboarLayout';
 import BaseLink from '@/components/links/BaseLink';
 import Skeleton from '@/components/Skeleton';
@@ -16,34 +15,6 @@ export default function PrettierPage() {
     }, 1500);
   }, []);
 
-  const [isCopying, setIsCopying] = React.useState(false);
-  const [isCopying1, setIsCopying1] = React.useState(false);
-
-  const ref1 = React.useRef<HTMLDivElement>(null);
-  const ref2 = React.useRef<HTMLDivElement>(null);
-  const handleCopy = async (text: string) => {
-    try {
-      if (text === ref2.current?.innerText) {
-        setIsCopying1(true);
-      } else {
-        setIsCopying(true);
-      }
-      await navigator.clipboard.writeText(text);
-      setTimeout(() => {
-        if (text === ref2.current?.innerText) {
-          setIsCopying1(false);
-        } else {
-          setIsCopying(false);
-        }
-      }, 3000);
-    } catch (error) {
-      if (text === ref2.current?.innerText) {
-        setIsCopying1(false);
-      } else {
-        setIsCopying(false);
-      }
-    }
-  };
   return (
     <DashboardLayout>
       <div className='box-border w-full overflow-y-auto px-7 py-7 md:px-12 xl:pl-16 xl:pr-10'>
@@ -63,156 +34,199 @@ export default function PrettierPage() {
             ) : (
               <h1 className='text-[2rem] font-semibold'>Setting Up Prettier</h1>
             )}
-            {isLoading ? (
-              <Skeleton className=' h-40 w-full' />
-            ) : (
-              <div className='space-y-4'>
-                <p className='leading-relaxed text-gray-300'>
-                  The first step you have to do is obviously{' '}
-                  <strong>creating the Next.Js app</strong>.
-                </p>
-                <p className='leading-relaxed text-gray-300'>
-                  There are several different starting ways you can do to create
-                  your own app. The first one is using{' '}
-                  <span className='tag'>npm</span> and the other way is using{' '}
-                  <span className='tag'>yarn</span>. Both ways works perfectly
-                  fine, but in this tutorial, we will use{' '}
-                  <span className='tag'>yarn</span> to do everything, including
-                  creating our next app.
-                </p>
-                <p className='leading-relaxed text-gray-300'>
-                  This below is how you can do it using yarn package manager,
-                </p>
-              </div>
-            )}
-
-            <div className='space-y-3 py-8' id='quickstart'>
+            <div className='space-y-4'>
               {isLoading ? (
-                <Skeleton className='h-8 w-32' />
+                <Skeleton className=' h-8 w-full lg:w-[33rem]' />
               ) : (
-                <h2 className='text-2xl font-medium'>Quickstart</h2>
+                <p className='leading-relaxed text-gray-300'>
+                  The next step you want to do is{' '}
+                  <strong>setting up your prettier configuration</strong>.
+                </p>
+              )}
+              {isLoading ? (
+                <Skeleton className='h-24 w-full' />
+              ) : (
+                <p className='leading-relaxed text-gray-300'>
+                  Since everyone has their own style and preference in writing
+                  their code, you have to declare the one styles and preferences
+                  used for your own project. Because sometimes, it gets on
+                  everyone&apos;s nerve when you got a lot of conflict after
+                  pull and rebasing other people&rsquo;s work just because of
+                  the different preference on tab width.
+                </p>
+              )}
+              {isLoading ? (
+                <Skeleton className='h-12 w-full' />
+              ) : (
+                <p className='leading-relaxed text-gray-300' id='install'>
+                  So to fix this issue, you need to add your own prettier
+                  configuration for your workspace by the help of some
+                  dependencies we&rsquo;re about to install.
+                </p>
+              )}
+            </div>
+            <div className='space-y-3 py-8'>
+              {isLoading ? (
+                <Skeleton className='h-8 w-72' />
+              ) : (
+                <h2 className='text-2xl font-medium'>
+                  Installing Dependencies
+                </h2>
               )}
               <div className='h-[.8px] w-full bg-base-navbarhover'></div>
               <div className='space-y-6'>
                 {isLoading ? (
-                  <Skeleton className='h-12 w-full' />
+                  <Skeleton className='h-8 w-full lg:w-[44rem]' />
                 ) : (
                   <p className='leading-relaxed text-gray-300'>
-                    First off, open your project folder or project repo in your
-                    vscode, and then open the terminal and type this in to
-                    create a next app.
+                    First off, we need to install prettier and some of
+                    it&rsquo;s dependencies by typing this into the terminal
                   </p>
                 )}
                 {isLoading ? (
                   <Skeleton className='h-12 w-full' />
                 ) : (
-                  <div className='code relative'>
-                    <Button
-                      variant='outline'
-                      size='small'
-                      onClick={() => handleCopy(ref1.current?.innerText || '')}
-                      icon={isCopying ? BsCheckLg : RxCopy}
-                      className='absolute right-[.6rem] top-[.6rem] px-3 py-1'
-                    />
-                    <div ref={ref1}>yarn create next-app@latest</div>
-                  </div>
+                  <CodeBlock>
+                    <p>
+                      yarn add --dev prettier eslint-plugin-prettier
+                      eslint-config-prettier prettier-plugin-tailwindcss
+                    </p>
+                  </CodeBlock>
                 )}
                 {isLoading ? (
-                  <Skeleton className=' h-56 w-full' />
+                  <Skeleton className='h-12 w-full' />
                 ) : (
-                  <div className='space-y-4'>
-                    <p className='leading-relaxed text-gray-300'>
-                      After that, you are going to answer some questions
-                      regarding your app&rsquo;s basic setup. All you have to do
-                      is just follow this answer for our objectives earlier,
-                    </p>
-                    <div className='code relative' ref={ref2}>
-                      <Button
-                        variant='outline'
-                        size='small'
-                        onClick={() =>
-                          handleCopy(ref2.current?.innerText || '')
-                        }
-                        icon={isCopying1 ? BsCheckLg : RxCopy}
-                        className='absolute right-[.6rem] top-2 px-3 py-1'
-                      />
-                      <div className='inline-block space-y-1 whitespace-nowrap'>
-                        <div className='flex items-center gap-x-2'>
-                          <span className='text-cyan-600'>?</span>
-                          <span>What is your project named?</span>
-                          <FiChevronRight />
-                          <span>.</span>
-                        </div>
-                        <div className='flex items-center gap-x-2'>
-                          <span className='text-cyan-600'>?</span>
-                          <span>
-                            Would you like to use{' '}
-                            <span className='font-semibold text-sky-600'>
-                              Typescript
-                            </span>{' '}
-                            with this project?
-                          </span>
-                          <FiChevronRight />
-                          <span className='text-cyan-600 underline'>Yes</span>
-                        </div>
-                        <div className='flex items-center gap-x-2'>
-                          <span className='text-cyan-600'>?</span>
-                          <span>
-                            Would you like to use{' '}
-                            <span className='font-semibold text-sky-600'>
-                              ESLint
-                            </span>{' '}
-                            with this project?
-                          </span>
-                          <FiChevronRight />
-                          <span className='text-cyan-600 underline'>Yes</span>
-                        </div>
-                        <div className='flex items-center gap-x-2'>
-                          <span className='text-cyan-600'>?</span>
-                          <span>
-                            Would you like to use{' '}
-                            <span className='font-semibold text-sky-600'>
-                              `src/` directory
-                            </span>{' '}
-                            with this project?
-                          </span>
-                          <FiChevronRight />
-                          <span className='text-cyan-600 underline'>Yes</span>
-                        </div>
-                        <div className='flex items-center gap-x-2'>
-                          <span className='text-cyan-600'>?</span>
-                          <span>
-                            Use{' '}
-                            <span className='font-semibold text-sky-600'>
-                              App Router
-                            </span>{' '}
-                            <span className='font-medium'>
-                              &#40;recommended&#41;
-                            </span>
-                            ?
-                          </span>
-                          <FiChevronRight />
-                          <span className='text-cyan-600 underline'>No</span>
-                        </div>
-                        <div className='flex items-center gap-x-2'>
-                          <span className='text-cyan-600'>?</span>
-                          <span>
-                            Would you like to customize the default{' '}
-                            <span className='font-semibold text-sky-600'>
-                              import alias
-                            </span>
-                            ?
-                          </span>
-                          <FiChevronRight />
-                          <span className='text-cyan-600 underline'>No</span>
-                        </div>
+                  <p className='leading-relaxed text-gray-300'>
+                    The above code is basically installing{' '}
+                    <span className='tag'>prettier</span> into your project for
+                    enabling the other three development dependencies next to
+                    it, which are :
+                  </p>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-32 w-full lg:w-[40rem]' />
+                ) : (
+                  <div className='space-y-2'>
+                    <div className='flex items-center gap-x-2'>
+                      <TbPoint />
+                      <span className='tag'>eslint-plugin-prettier</span> for
+                      eslint&rsquo;s plugin,{' '}
+                    </div>
+                    <div className='flex items-center gap-x-2'>
+                      <TbPoint />
+                      <span className='tag'>eslint-config-prettier</span> for
+                      eslint&rsquo;s extend, and{' '}
+                    </div>
+                    <div className='flex items-center gap-x-2' id='config'>
+                      <TbPoint />
+                      <span className='tag'>
+                        prettier-plugin-tailwindcss
+                      </span>{' '}
+                      to sort all tailwind classes used on your elements
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+            <div className='space-y-3 py-8'>
+              {isLoading ? (
+                <Skeleton className='h-8 w-72' />
+              ) : (
+                <h2 className='text-2xl font-medium'>Add Configuration</h2>
+              )}
+              <div className='h-[.8px] w-full bg-base-navbarhover'></div>
+              <div className='space-y-6'>
+                {isLoading ? (
+                  <Skeleton className='h-8 w-full' />
+                ) : (
+                  <p className='leading-relaxed text-gray-300'>
+                    The next thing is, create a{' '}
+                    <span className='tag'>.prettier.js</span> file as a top
+                    level file &#40; at the root &#41; and your own custom
+                    configuration like this,
+                  </p>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-48 w-full' />
+                ) : (
+                  <CodeBlock withCopy={false}>
+                    <div>module.export = &#123;</div>
+                    <div className='pl-4'>
+                      <div>
+                        arrowParens:{' '}
+                        <span className='text-code-state'>
+                          &apos;always&apos;
+                        </span>
+                        ,
+                      </div>
+                      <div>
+                        singleQuote:{' '}
+                        <span className='text-code-bool'>true</span>,
+                      </div>
+                      <div>
+                        jsxSingleQuote:{' '}
+                        <span className='text-code-bool'>true</span>,
+                      </div>
+                      <div>
+                        bracketSpacing:{' '}
+                        <span className='text-code-bool'>true</span>,
+                      </div>
+                      <div>tabWidth: 2,</div>
+                      <div>
+                        semi: <span className='text-code-bool'>true</span>,
                       </div>
                     </div>
-                    <p className='leading-relaxed text-gray-300'>
-                      And that&rsquo;s it, you have created your own Next.Js
-                      application.
-                    </p>
-                  </div>
+                    <div>&#125;;</div>
+                  </CodeBlock>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-12 w-full' />
+                ) : (
+                  <p className='leading-relaxed text-gray-300'>
+                    But the above configuration wont applied in your project if
+                    you haven&apos;t update the ESLint configuration. So to make
+                    this prettier works, you need to add{' '}
+                    <span className='tag'>&ldquo;prettier&rdquo;</span>
+                    to the <span className='tag'>extends</span> and the{' '}
+                    <span className='tag'>plugins</span> array in the
+                    .eslintrc.json file.
+                  </p>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-28 w-full' />
+                ) : (
+                  <CodeBlock withCopy={false}>
+                    <div>&#123;</div>
+                    <div className='pl-4'>
+                      <div>
+                        &ldquo;extends&rdquo; : &#91;
+                        <span className='text-theme-lightsaxe'>
+                          &ldquo;next/core-web-vitals&rdquo;
+                        </span>
+                        ,
+                        <span className='text-theme-lightsaxe'>
+                          &ldquo;prettier&rdquo;
+                        </span>
+                        &#93;
+                      </div>
+                      <div>
+                        &ldquo;plugins&rdquo; : &#91;
+                        <span className='text-theme-lightsaxe'>
+                          &ldquo;prettier&rdquo;
+                        </span>
+                        &#93;
+                      </div>
+                    </div>
+                    <div>&#125;;</div>
+                  </CodeBlock>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-8 w-full lg:w-[40rem]' />
+                ) : (
+                  <p className='leading-relaxed text-gray-300'>
+                    And that&apos;s it, now your project has it&apos;s own
+                    styles and preferences thanks to prettier!
+                  </p>
                 )}
               </div>
             </div>
@@ -245,39 +259,55 @@ export default function PrettierPage() {
         </div>
       </div>
       <div className='sticky top-[4rem] hidden max-h-[calc(100vh-4rem)] min-w-[16rem] max-w-[16rem] px-4 py-8 xl:block'>
-        {isLoading ? (
-          <Skeleton className='h-40 w-full' />
-        ) : (
-          <div className='relative space-y-4'>
-            <div className='space-y-2'>
+        <div className='relative space-y-4'>
+          <div className='space-y-2'>
+            {isLoading ? (
+              <Skeleton className='h-8 w-32' />
+            ) : (
               <h3 className='font-semibold'>On This Page</h3>
-              <div>
+            )}
+            {isLoading ? (
+              <Skeleton className='h-12 w-48' />
+            ) : (
+              <>
                 <BaseLink
-                  href='#quickstart'
+                  href='#install'
                   className='flex items-center gap-x-1 text-[.95rem] text-theme-nav hover:text-theme-navhover'
                 >
-                  <span>Quickstart</span>
+                  <span>Installing Dependencies</span>
+                </BaseLink>
+                <BaseLink
+                  href='#config'
+                  className='flex items-center gap-x-1 text-[.95rem] text-theme-nav hover:text-theme-navhover'
+                >
+                  <span>Add Configuration</span>
+                </BaseLink>
+              </>
+            )}
+          </div>
+          {isLoading ? (
+            <Skeleton className='h-20 w-full' />
+          ) : (
+            <>
+              <div className='h-[.8px] w-full bg-base-stealth'></div>
+              <div className='space-y-2'>
+                <BaseLink
+                  href=''
+                  className='flex items-center gap-x-1 text-[.8rem] text-theme-nav hover:text-theme-navhover'
+                >
+                  <span>Question? Give me feedback</span>
+                  <FiArrowRight />
+                </BaseLink>
+                <BaseLink
+                  href=''
+                  className='flex items-center gap-x-1 text-[.8rem] text-theme-nav hover:text-theme-navhover'
+                >
+                  <span>See the repository</span>
                 </BaseLink>
               </div>
-            </div>
-            <div className='h-[.8px] w-full bg-base-stealth'></div>
-            <div className='space-y-2'>
-              <BaseLink
-                href=''
-                className='flex items-center gap-x-1 text-[.8rem] text-theme-nav hover:text-theme-navhover'
-              >
-                <span>Question? Give me feedback</span>
-                <FiArrowRight />
-              </BaseLink>
-              <BaseLink
-                href=''
-                className='flex items-center gap-x-1 text-[.8rem] text-theme-nav hover:text-theme-navhover'
-              >
-                <span>See the repository</span>
-              </BaseLink>
-            </div>
-          </div>
-        )}
+            </>
+          )}
+        </div>
       </div>
     </DashboardLayout>
   );
