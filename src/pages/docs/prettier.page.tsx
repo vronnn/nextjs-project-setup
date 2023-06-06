@@ -40,7 +40,7 @@ export default function PrettierPage() {
               ) : (
                 <p className='leading-relaxed text-gray-300'>
                   The next step you want to do is{' '}
-                  <strong>setting up your prettier configuration</strong>.
+                  <strong>Adding prettier to your project</strong>.
                 </p>
               )}
               {isLoading ? (
@@ -48,18 +48,16 @@ export default function PrettierPage() {
               ) : (
                 <p className='leading-relaxed text-gray-300'>
                   Since everyone has their own style and preference in writing
-                  their code, you have to declare the one styles and preferences
-                  used for your own project. Because sometimes, it gets on
-                  everyone&apos;s nerve when you got a lot of conflict after
-                  pull and rebasing other people&rsquo;s work just because of
-                  the different preference on tab width.
+                  their code, you have to declare the one style and preference
+                  used for your own project to make sure that there are no
+                  conflicts occured just because of it.
                 </p>
               )}
               {isLoading ? (
                 <Skeleton className='h-12 w-full' />
               ) : (
                 <p className='leading-relaxed text-gray-300' id='install'>
-                  So to fix this issue, you need to add your own prettier
+                  So to make that happen, you can add your own prettier
                   configuration for your workspace by the help of some
                   dependencies we&rsquo;re about to install.
                 </p>
@@ -79,8 +77,8 @@ export default function PrettierPage() {
                   <Skeleton className='h-8 w-full lg:w-[44rem]' />
                 ) : (
                   <p className='leading-relaxed text-gray-300'>
-                    First off, we need to install prettier and some of
-                    it&rsquo;s dependencies by typing this into the terminal
+                    First off, we need to install prettier and some dev
+                    dependencies by typing this into the terminal
                   </p>
                 )}
                 {isLoading ? (
@@ -98,9 +96,8 @@ export default function PrettierPage() {
                 ) : (
                   <p className='leading-relaxed text-gray-300'>
                     The above code is basically installing{' '}
-                    <span className='tag'>prettier</span> into your project for
-                    enabling the other three development dependencies next to
-                    it, which are :
+                    <span className='tag'>prettier</span> into your project and
+                    three other development dependencies next to it, which are :
                   </p>
                 )}
                 {isLoading ? (
@@ -110,12 +107,12 @@ export default function PrettierPage() {
                     <div className='flex items-center gap-x-2'>
                       <TbPoint />
                       <span className='tag'>eslint-plugin-prettier</span> for
-                      eslint&rsquo;s plugin,{' '}
+                      prettier eslint&rsquo;s plugins,{' '}
                     </div>
                     <div className='flex items-center gap-x-2'>
                       <TbPoint />
                       <span className='tag'>eslint-config-prettier</span> for
-                      eslint&rsquo;s extend, and{' '}
+                      prettier eslint&rsquo;s extends, and{' '}
                     </div>
                     <div className='flex items-center gap-x-2' id='config'>
                       <TbPoint />
@@ -140,7 +137,7 @@ export default function PrettierPage() {
                   <Skeleton className='h-8 w-full' />
                 ) : (
                   <p className='leading-relaxed text-gray-300'>
-                    The next thing is, create a{' '}
+                    Now to setup and enable the prettier, you need to create a{' '}
                     <span className='tag'>.prettier.js</span> file as a top
                     level file &#40; at the root &#41; and your own custom
                     configuration like this,
@@ -180,16 +177,16 @@ export default function PrettierPage() {
                   </CodeBlock>
                 )}
                 {isLoading ? (
-                  <Skeleton className='h-12 w-full' />
+                  <Skeleton className='h-36 w-full' />
                 ) : (
                   <p className='leading-relaxed text-gray-300'>
-                    But the above configuration wont applied in your project if
-                    you haven&apos;t update the ESLint configuration. So to make
-                    this prettier works, you need to add{' '}
-                    <span className='tag'>&ldquo;prettier&rdquo;</span>
-                    to the <span className='tag'>extends</span> and the{' '}
-                    <span className='tag'>plugins</span> array in the
-                    .eslintrc.json file.
+                    After setting the above configuration, your project is
+                    actually already comply to it right now. But to make the
+                    prettier work with ESlint, you need to add
+                    <span className='tag'>&ldquo;prettier&rdquo;</span> to the{' '}
+                    <span className='tag'>extends</span> and the{' '}
+                    <span className='tag'>plugins</span> array in the{' '}
+                    <span className='tag'>.eslintrc.json</span> file.
                   </p>
                 )}
                 {isLoading ? (
@@ -215,6 +212,60 @@ export default function PrettierPage() {
                           &ldquo;prettier&rdquo;
                         </span>
                         &#93;
+                      </div>
+                    </div>
+                    <div>&#125;;</div>
+                  </CodeBlock>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-8 w-full lg:w-[40rem]' />
+                ) : (
+                  <p className='leading-relaxed text-gray-300'>
+                    You can also define some rules regarding prettier in this
+                    file like this below,
+                  </p>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-48 w-full' />
+                ) : (
+                  <CodeBlock withCopy={false}>
+                    <div>&#123;</div>
+                    <div className='pl-4'>
+                      <div>
+                        &ldquo;extends&rdquo; : &#91;
+                        <span className='text-theme-lightsaxe'>
+                          &ldquo;next/core-web-vitals&rdquo;
+                        </span>
+                        ,
+                        <span className='text-theme-lightsaxe'>
+                          &ldquo;prettier&rdquo;
+                        </span>
+                        &#93;
+                      </div>
+                      <div>
+                        &ldquo;plugins&rdquo; : &#91;
+                        <span className='text-theme-lightsaxe'>
+                          &ldquo;prettier&rdquo;
+                        </span>
+                        &#93;
+                      </div>
+                      <div>
+                        &ldquo;rules&rdquo; : &#123;
+                        <div className='pl-4'>
+                          <div>
+                            &ldquo;prettier/prettier&rdquo; :{' '}
+                            <span className='text-theme-lightsaxe'>
+                              &ldquo;warn&rdquo;
+                            </span>
+                          </div>
+                          <div>
+                            &ldquo;no-console&rdquo; :{' '}
+                            <span className='text-theme-lightsaxe'>
+                              &ldquo;warn&rdquo;
+                            </span>
+                          </div>
+                        </div>
+                        <div>&#125;;</div>
                       </div>
                     </div>
                     <div>&#125;;</div>

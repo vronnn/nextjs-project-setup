@@ -178,12 +178,15 @@ export default function CreateAppPage() {
                   <Skeleton className='h-12 w-full' />
                 ) : (
                   <p className='leading-relaxed text-gray-300'>
-                    These answers is helping you to set up your app with some
-                    basic arrangements, such as programming language &#40;
+                    These answers is basically helping you to set up your app
+                    with some basic arrangements, such as programming language
+                    &#40;
                     <span className='text-theme-saxe'>Typescript</span>
                     &#41;, CSS utilities &#40;
                     <span className='text-theme-saxe'>Tailwind CSS</span>
-                    &#41;, and even ESLint default configuration.
+                    &#41;, and even{' '}
+                    <span className='text-theme-saxe'>ESLint</span> default
+                    configuration.
                   </p>
                 )}
                 {isLoading ? (
