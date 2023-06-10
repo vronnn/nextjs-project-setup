@@ -103,7 +103,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             variant === 'transdark' && [
               'text-theme-nav hover:text-theme-navhover',
               'bg-[#323746]',
-              'border border-base-stealth',
+              'border-[.8px] border-base-stealth',
             ],
           ],
           'disabled:cursor-not-allowed',

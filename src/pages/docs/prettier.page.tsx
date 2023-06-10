@@ -15,6 +15,33 @@ export default function PrettierPage() {
     }, 1500);
   }, []);
 
+  const eslint = {
+    extends: ['next/core-web-vitals', 'prettier'],
+    plugins: ['prettier'],
+  };
+
+  const eslintRules = {
+    extends: ['next', 'next/core-web-vitals', 'prettier'],
+    plugins: ['prettier'],
+    rules: {
+      'prettier/prettier': 'warn',
+      'no-console': 'warn',
+    },
+  };
+
+  const prettierIgnore = `.prettierrc.js tailwind.config.js`
+    .split(' ')
+    .join(',\n');
+
+  const prettier = {
+    arrowParens: 'always',
+    singleQuote: true,
+    jsxSingleQuote: true,
+    bracketSpacing: true,
+    tabWidth: 2,
+    semi: true,
+  };
+
   return (
     <DashboardLayout>
       <div className='box-border w-full overflow-y-auto px-7 py-7 md:px-12 xl:pl-16 xl:pr-10'>
@@ -146,34 +173,12 @@ export default function PrettierPage() {
                 {isLoading ? (
                   <Skeleton className='h-48 w-full' />
                 ) : (
-                  <CodeBlock withCopy={false}>
-                    <div>module.export = &#123;</div>
-                    <div className='pl-4'>
-                      <div>
-                        arrowParens:{' '}
-                        <span className='text-code-state'>
-                          &apos;always&apos;
-                        </span>
-                        ,
-                      </div>
-                      <div>
-                        singleQuote:{' '}
-                        <span className='text-code-bool'>true</span>,
-                      </div>
-                      <div>
-                        jsxSingleQuote:{' '}
-                        <span className='text-code-bool'>true</span>,
-                      </div>
-                      <div>
-                        bracketSpacing:{' '}
-                        <span className='text-code-bool'>true</span>,
-                      </div>
-                      <div>tabWidth: 2,</div>
-                      <div>
-                        semi: <span className='text-code-bool'>true</span>,
-                      </div>
-                    </div>
-                    <div>&#125;;</div>
+                  <CodeBlock title='.prettierrc.js'>
+                    <pre>{`module.exports = ${JSON.stringify(
+                      prettier,
+                      null,
+                      2
+                    )}`}</pre>
                   </CodeBlock>
                 )}
                 {isLoading ? (
@@ -182,7 +187,7 @@ export default function PrettierPage() {
                   <p className='leading-relaxed text-gray-300'>
                     After setting the above configuration, your project is
                     actually already comply to it right now. But to make the
-                    prettier work with ESlint, you need to add
+                    prettier work with ESlint, you need to add{' '}
                     <span className='tag'>&ldquo;prettier&rdquo;</span> to the{' '}
                     <span className='tag'>extends</span> and the{' '}
                     <span className='tag'>plugins</span> array in the{' '}
@@ -192,29 +197,8 @@ export default function PrettierPage() {
                 {isLoading ? (
                   <Skeleton className='h-28 w-full' />
                 ) : (
-                  <CodeBlock withCopy={false}>
-                    <div>&#123;</div>
-                    <div className='pl-4'>
-                      <div>
-                        &ldquo;extends&rdquo; : &#91;
-                        <span className='text-theme-lightsaxe'>
-                          &ldquo;next/core-web-vitals&rdquo;
-                        </span>
-                        ,
-                        <span className='text-theme-lightsaxe'>
-                          &ldquo;prettier&rdquo;
-                        </span>
-                        &#93;
-                      </div>
-                      <div>
-                        &ldquo;plugins&rdquo; : &#91;
-                        <span className='text-theme-lightsaxe'>
-                          &ldquo;prettier&rdquo;
-                        </span>
-                        &#93;
-                      </div>
-                    </div>
-                    <div>&#125;;</div>
+                  <CodeBlock title='.eslintrc.json'>
+                    <pre>{JSON.stringify(eslint, null, 2)}</pre>
                   </CodeBlock>
                 )}
                 {isLoading ? (
@@ -228,47 +212,25 @@ export default function PrettierPage() {
                 {isLoading ? (
                   <Skeleton className='h-48 w-full' />
                 ) : (
-                  <CodeBlock withCopy={false}>
-                    <div>&#123;</div>
-                    <div className='pl-4'>
-                      <div>
-                        &ldquo;extends&rdquo; : &#91;
-                        <span className='text-theme-lightsaxe'>
-                          &ldquo;next/core-web-vitals&rdquo;
-                        </span>
-                        ,
-                        <span className='text-theme-lightsaxe'>
-                          &ldquo;prettier&rdquo;
-                        </span>
-                        &#93;
-                      </div>
-                      <div>
-                        &ldquo;plugins&rdquo; : &#91;
-                        <span className='text-theme-lightsaxe'>
-                          &ldquo;prettier&rdquo;
-                        </span>
-                        &#93;
-                      </div>
-                      <div>
-                        &ldquo;rules&rdquo; : &#123;
-                        <div className='pl-4'>
-                          <div>
-                            &ldquo;prettier/prettier&rdquo; :{' '}
-                            <span className='text-theme-lightsaxe'>
-                              &ldquo;warn&rdquo;
-                            </span>
-                          </div>
-                          <div>
-                            &ldquo;no-console&rdquo; :{' '}
-                            <span className='text-theme-lightsaxe'>
-                              &ldquo;warn&rdquo;
-                            </span>
-                          </div>
-                        </div>
-                        <div>&#125;;</div>
-                      </div>
-                    </div>
-                    <div>&#125;;</div>
+                  <CodeBlock title='.eslintrc.json' withCopy={true}>
+                    <pre>{JSON.stringify(eslintRules, null, 2)}</pre>
+                  </CodeBlock>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-8 w-full lg:w-[40rem]' />
+                ) : (
+                  <p className='leading-relaxed text-gray-300'>
+                    And for the last step, you can create a{' '}
+                    <span className='tag'>.prettierignore</span> file to exclude
+                    any files or directory that doesn&apos;t seem necessary to
+                    be made up by your prettier configurations,
+                  </p>
+                )}
+                {isLoading ? (
+                  <Skeleton className='h-48 w-full' />
+                ) : (
+                  <CodeBlock title='.prettierignore'>
+                    <div className='whitespace-pre-line'>{prettierIgnore}</div>
                   </CodeBlock>
                 )}
                 {isLoading ? (

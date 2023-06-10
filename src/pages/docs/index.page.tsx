@@ -50,13 +50,16 @@ export default function CreateAppPage() {
                   <span className='tag'>yarn</span> to do everything, including
                   creating our next app.
                 </p>
-                <p className='leading-relaxed text-gray-300'>
-                  This below is how you can do it using yarn package manager,
+                <p className='leading-relaxed text-gray-300' id='quickstart'>
+                  If you haven&apos;t installed Yarn on your laptop, you can
+                  install it first by referring to their documentation. But if
+                  you have, here is how you can create your app using the Yarn
+                  package manager.
                 </p>
               </div>
             )}
 
-            <div className='space-y-3 py-8' id='quickstart'>
+            <div className='space-y-3 py-8'>
               {isLoading ? (
                 <Skeleton className='h-8 w-32' />
               ) : (
@@ -178,23 +181,17 @@ export default function CreateAppPage() {
                   <Skeleton className='h-12 w-full' />
                 ) : (
                   <p className='leading-relaxed text-gray-300'>
-                    These answers is basically helping you to set up your app
-                    with some basic arrangements, such as programming language
-                    &#40;
-                    <span className='text-theme-saxe'>Typescript</span>
-                    &#41;, CSS utilities &#40;
-                    <span className='text-theme-saxe'>Tailwind CSS</span>
-                    &#41;, and even{' '}
-                    <span className='text-theme-saxe'>ESLint</span> default
-                    configuration.
+                    After answering those questions, you should already have{' '}
+                    <span className='tag'>.eslintrc.json</span> file in your
+                    project folder structure that prepares you with the default
+                    ESLint configurations.
                   </p>
                 )}
                 {isLoading ? (
                   <Skeleton className='h-8 w-full lg:w-[30rem]' />
                 ) : (
                   <p className='leading-relaxed text-gray-300'>
-                    And that&rsquo;s it, you have created your own Next.Js
-                    application.
+                    Congrats! you have created your own Next.Js application.
                   </p>
                 )}
               </div>

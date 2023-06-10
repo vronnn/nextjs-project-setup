@@ -30,7 +30,7 @@
 }
 
 .code {
-  @apply overflow-x-auto rounded-md bg-base-navbarhover px-5 py-4 font-mono text-sm;
+  @apply overflow-x-auto rounded-md bg-base-subtle font-mono text-sm;
 }
 
 .no-scrollbar::-webkit-scrollbar {

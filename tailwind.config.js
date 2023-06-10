@@ -21,6 +21,7 @@ module.exports = {
           nav: '#9aa2ae',
           navhover: '#f3f4f6',
           lightsaxe: '#aec5e2',
+          darksaxe: '#262c45',
         },
         base: {
           subtle: '#27272a',
@@ -28,6 +29,8 @@ module.exports = {
           navbar: '#1d1e20',
           navbarhover: '#282829',
           tag: '#343941',
+          title: '#1a2437',
+          code: '#262c45',
         },
         code: {
           bool: '#d19a66',
